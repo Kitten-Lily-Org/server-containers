@@ -1,0 +1,56 @@
+name: Build and Push Jellyfin Image
+on:
+  schedule:
+    - cron: "0 6,18 * * *" # 6am and 6pm every day
+  pull_request:
+  merge_group:
+  workflow_dispatch:
+env:
+  IMAGE_TAGS: latest
+  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}/jellyfin
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build and push image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+    steps:
+      - name: Generate snapshot date
+        id: snapshot-date
+        run: |
+          echo "date=$(date -u +%Y%m%d)" >> $GITHUB_OUTPUT
+          echo "epoch=$(date -u +%s)" >> $GITHUB_OUTPUT
+        shell: bash
+
+      - uses: actions/checkout@main
+      - uses: sigstore/cosign-installer@main
+      - uses: chainguard-dev/actions/melange-build@main
+        with:
+          sign-with-temporary-key: true
+          multi-config: ffmpeg-files/ffmpeg.melange.yaml
+            jellyfin-files/jellyfin.melange.yaml
+            jellyfin-files/jellyfin-web.melange.yaml
+
+      # Workaround bug where capital letters in your GitHub username make it impossible to push to GHCR.
+      # https://github.com/macbre/push-to-ghcr/issues/12
+      - name: Lowercase Registry
+        id: registry_case
+        uses: ASzc/change-string-case-action@v6
+        with:
+          string: ${{ env.IMAGE_REGISTRY }}
+
+      - uses: distroless/actions/apko-publish@main
+        id: apko
+        with:
+          archs: x86_64
+          keyring-append: ${{ github.workspace }}/melange.rsa
+          tag: ${{ steps.registry_case.outputs.lowercase }}
+          source-date-epoch: ${{ steps.snapshot-date.outputs.epoch }}
+          config: jellyfin-files/jellyfin.apko.yaml
