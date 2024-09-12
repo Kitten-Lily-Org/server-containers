@@ -3,7 +3,7 @@ contents:
     - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
   repositories:
     - https://packages.wolfi.dev/os
-    - /home/runner/work/server-containers/server-containers/packages
+    - /home/runner/work/server-containers/server-containers
   packages:
     - busybox
     - ffmpeg
