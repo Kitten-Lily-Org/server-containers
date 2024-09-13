@@ -16,10 +16,7 @@ concurrency:
 jobs:
   build:
     name: Build and push image
-    runs-on:
-      - runs-on
-      - runner=16cpu-linux-x64
-      - "run-id=${{ github.run_id }}"
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
@@ -52,7 +49,7 @@ jobs:
         with:
           archs: x86_64
           keyring-append: ${{ github.workspace }}/melange.rsa.pub
-          repository-append: ${{ github.workspace }}/packages
+          repository-append: "@local ${{ github.workspace }}/packages"
           tag: ${{ steps.registry_case.outputs.lowercase }}
           source-date-epoch: ${{ steps.snapshot-date.outputs.epoch }}
           config: caddy-files/caddy.apko.yaml
