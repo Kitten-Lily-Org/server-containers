@@ -18,7 +18,7 @@ jobs:
     name: Build and push image
     runs-on:
       - runs-on
-      - runner=8cpu-linux-x64
+      - runner=16cpu-linux-x64
       - "run-id=${{ github.run_id }}"
     permissions:
       contents: read
