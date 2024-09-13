@@ -6,7 +6,7 @@ contents:
   packages:
     - ca-certificates-bundle
     - wolfi-base
-    - caddy-2.8.4-r3
+    - caddy
 
 entrypoint:
   command: /usr/bin/caddy run --config /etc/caddy/Caddyfile
