@@ -44,7 +44,7 @@ jobs:
         with:
           string: ${{ env.IMAGE_REGISTRY }}
 
-      - uses: distroless/actions/apko-publish@main
+      - uses: chainguard-images/actions/apko-publish@main
         id: apko
         with:
           archs: x86_64
