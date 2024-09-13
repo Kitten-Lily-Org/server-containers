@@ -46,11 +46,12 @@ jobs:
         with:
           string: ${{ env.IMAGE_REGISTRY }}
 
-      - uses: distroless/actions/apko-publish@main
+      - uses: chainguard-images/actions/apko-publish@main
         id: apko
         with:
           archs: x86_64
           keyring-append: ${{ github.workspace }}/melange.rsa
+          repository-append: ${{ github.workspace }}/packages
           tag: ${{ steps.registry_case.outputs.lowercase }}
           source-date-epoch: ${{ steps.snapshot-date.outputs.epoch }}
           config: jellyfin-files/jellyfin.apko.yaml
