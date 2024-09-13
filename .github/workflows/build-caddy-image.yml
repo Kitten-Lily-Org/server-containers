@@ -49,7 +49,7 @@ jobs:
         with:
           archs: x86_64
           keyring-append: ${{ github.workspace }}/melange.rsa.pub
-          repository-append: "@local ${{ github.workspace }}/packages"
+          repository-append: "${{ github.workspace }}/packages"
           tag: ${{ steps.registry_case.outputs.lowercase }}
           source-date-epoch: ${{ steps.snapshot-date.outputs.epoch }}
           config: caddy-files/caddy.apko.yaml
