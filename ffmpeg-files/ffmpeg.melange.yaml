@@ -27,6 +27,8 @@ environment:
       - busybox
       - ca-certificates-bundle
       - lame-dev
+      - libdrm
+      - libdrm-dev
       - libogg-dev
       - libtheora
       - libtheora-dev
@@ -57,7 +59,8 @@ pipeline:
         --enable-version3 \
         --enable-openssl \
         --enable-libmp3lame \
-        --enable-vaapi
+        --enable-vaapi \
+        --enable-libdrm
 
   - uses: autoconf/make
 
