@@ -16,7 +16,7 @@ concurrency:
 jobs:
   build:
     name: Build and push image
-    runs-on: [runs-on, runner=8cpu-linux-x64, "run-id=${{ github.run_id }}"]
+    runs-on: ubuntu-latest
     permissions:
       contents: read
       packages: write
