@@ -6,6 +6,8 @@ contents:
   packages:
     - busybox
     - ffmpeg
+    - intel-gmmlib
+    - intel-media-driver
     - jellyfin
     - jellyfin-web
 
