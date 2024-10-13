@@ -1,7 +1,7 @@
 name: Build and Push Caddy Image
 on:
   schedule:
-    - cron: "0 6,18 * * *" # 6am and 6pm every day
+    - cron: "0 4 * * *" # 4am every day
   pull_request:
   merge_group:
   workflow_dispatch:
