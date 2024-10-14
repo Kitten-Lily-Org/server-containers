@@ -1,8 +1,8 @@
 diff --git a/Directory.Packages.props b/Directory.Packages.props
-index 0998c2b31..dd19f4d6d 100644
+index 414b7d8..ce22355 100644
 --- a/Directory.Packages.props
 +++ b/Directory.Packages.props
-@@ -75,8 +75,8 @@
+@@ -74,11 +74,11 @@
      <PackageVersion Include="StyleCop.Analyzers" Version="1.2.0-beta.556" />
      <PackageVersion Include="Svg.Skia" Version="1.0.0.18" />
      <PackageVersion Include="Swashbuckle.AspNetCore.ReDoc" Version="6.6.2" />
@@ -13,3 +13,6 @@ index 0998c2b31..dd19f4d6d 100644
      <PackageVersion Include="System.Text.Encoding.CodePages" Version="8.0.0" />
 -    <PackageVersion Include="System.Text.Json" Version="8.0.4" />
 +    <PackageVersion Include="System.Text.Json" Version="8.0.5" />
+     <PackageVersion Include="System.Threading.Tasks.Dataflow" Version="8.0.1" />
+     <PackageVersion Include="TagLibSharp" Version="2.3.0" />
+     <PackageVersion Include="TMDbLib" Version="2.2.0" />
