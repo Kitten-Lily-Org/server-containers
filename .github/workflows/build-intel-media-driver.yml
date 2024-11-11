@@ -37,3 +37,9 @@ jobs:
           sign-with-temporary-key: true
           multi-config: intel-files/intel-gmmlib.melange.yaml
             intel-files/intel-media-driver.melange.yaml
+
+      - name: Upload packages
+        uses: actions/upload-artifact@v4
+        with:
+          name: Packages
+          path: ${{ github.workspace }}/packages
