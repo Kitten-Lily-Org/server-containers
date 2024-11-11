@@ -1,6 +1,6 @@
 package:
   name: intel-gmmlib
-  version: 22.5.2
+  version: 22.5.3
   epoch: 0
   description: Intel Graphics Memory Management Library
   copyright:
@@ -24,7 +24,7 @@ pipeline:
     with:
       repository: https://github.com/intel/gmmlib
       tag: ${{package.name}}-${{package.version}}
-      expected-commit: 567dc09fd3859de3d9c09456ee7b366c0d327eb6
+      expected-commit: ca9f9596eb1058bafd625ab8c177a7d87e8713a3
 
   - runs: |
       cmake -B build -G Ninja \

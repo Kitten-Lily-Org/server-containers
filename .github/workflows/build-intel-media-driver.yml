@@ -1,4 +1,4 @@
-name: Build and Push Jellyfin Image
+name: Build and Push Intel Media Driver Package
 on:
   schedule:
     - cron: "0 4 * * *" # 4am every day

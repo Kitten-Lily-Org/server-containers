@@ -1,6 +1,6 @@
 package:
   name: intel-media-driver
-  version: 24.2.5
+  version: 24.3.4
   epoch: 0
   description: Intel Media Driver for VAAPI
   copyright:
@@ -27,7 +27,7 @@ pipeline:
     with:
       repository: https://github.com/intel/media-driver
       tag: intel-media-${{package.version}}
-      expected-commit: 12561f68260c51a27d3e4ef0f3faaae01c49c160
+      expected-commit: 081fc57f709db16aa22f62c6337753069d7f36fa
 
   - runs: |
       cmake -B build -G Ninja -Wno-dev \
