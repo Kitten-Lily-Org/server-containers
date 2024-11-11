@@ -1,4 +1,4 @@
-name: Build and Push Intel Media Driver Package
+name: Build and Push Intel Media Driver
 on:
   schedule:
     - cron: "0 4 * * *" # 4am every day
@@ -33,7 +33,7 @@ jobs:
       - uses: sigstore/cosign-installer@main
 
       - name: Setup signing key
-        run: 'echo "$MELANGE_SIGNING_KEY" > ${{ github.workspace }}/melange.rsa'
+        run: 'echo "$MELANGE_SIGNING_KEY" > ${{ github.workspace }}/local-melange.rsa'
         shell: bash
         env:
           SSH_KEY: ${{secrets.SSH_KEY}}
