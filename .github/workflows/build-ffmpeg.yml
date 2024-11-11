@@ -1,8 +1,9 @@
-name: Build Intel Media Driver
+name: Build ffmpeg
 on:
   schedule:
     - cron: "0 4 * * *" # 4am every day
   pull_request:
+  push:
   merge_group:
   workflow_dispatch:
 env:
@@ -31,11 +32,20 @@ jobs:
 
       - uses: actions/checkout@main
       - uses: sigstore/cosign-installer@main
+
+      - run: |
+          mkdir ffmpeg-files
+          wget -q -O- https://github.com/wolfi-dev/os/raw/refs/heads/main/ffmpeg.yaml | \
+          yq '.environment.contents.keyring = ["https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"]|.environment.contents.repositories = ["https://packages.wolfi.dev/os"]' | \
+          yq '.environment.contents.packages += ["libdrm-dev", "libva-dev"]' | \
+          yq -d '.test' | \
+          sed 's/--enable-libzmq/--enable-libzmq \\\n        --enable-vaapi \\\n        --enable-libdrm/' \
+          > ffmpeg-files/ffmpeg.melange.yaml
+
       - uses: chainguard-dev/actions/melange-build@main
         with:
           sign-with-temporary-key: true
-          multi-config: intel-files/intel-gmmlib.melange.yaml
-            intel-files/intel-media-driver.melange.yaml
+          config: ffmpeg-files/ffmpeg.melange.yaml
 
       - name: Upload packages
         uses: actions/upload-artifact@v4
