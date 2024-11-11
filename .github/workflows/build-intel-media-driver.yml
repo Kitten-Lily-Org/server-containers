@@ -1,9 +1,8 @@
-name: Build and Push Intel Media Driver
+name: Build Intel Media Driver
 on:
   schedule:
     - cron: "0 4 * * *" # 4am every day
   pull_request:
-  push:
   merge_group:
   workflow_dispatch:
 env:
@@ -16,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build and push image
+    name: Build and upload package
     runs-on: [runs-on, runner=8cpu-linux-x64, "run-id=${{ github.run_id }}"]
     permissions:
       contents: read
