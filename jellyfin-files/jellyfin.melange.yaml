@@ -1,6 +1,6 @@
 package:
   name: jellyfin
-  version: 10.9.11
+  version: 10.10.1
   epoch: 0
   description: The Free Software Media System
   copyright:
@@ -31,7 +31,7 @@ pipeline:
     with:
       repository: https://github.com/jellyfin/jellyfin
       tag: v${{package.version}}
-      expected-commit: 7bbdfc0d4943b1823d82cb85795a707a6e3a9b4d
+      expected-commit: f6f4cdf9e788ac522ca6d43eac4570c1fa607da4
 
   - uses: patch
     with:
