@@ -41,7 +41,7 @@ jobs:
           yq 'del(.test)' | \
           yq 'del(.subpackages[*].test)' | \
           sed 's/--enable-libzmq/--enable-libzmq \\\n        --enable-vaapi \\\n        --enable-libdrm/' \
-          > ffmpeg-files/ffmpeg.melange.yaml`
+          > ffmpeg-files/ffmpeg.melange.yaml
           cat ffmpeg-files/ffmpeg.melange.yaml
 
       # - uses: chainguard-dev/actions/melange-build@main
