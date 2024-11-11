@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   build:
-    name: Build and push image
+    name: Build and push package
     runs-on: [runs-on, runner=8cpu-linux-x64, "run-id=${{ github.run_id }}"]
     permissions:
       contents: read
@@ -31,8 +31,14 @@ jobs:
 
       - uses: actions/checkout@main
       - uses: sigstore/cosign-installer@main
+
+      - name: Setup signing key
+        run: 'echo "$MELANGE_SIGNING_KEY" > ${{ github.workspace }}/melange.rsa'
+        shell: bash
+        env:
+          SSH_KEY: ${{secrets.SSH_KEY}}
+
       - uses: chainguard-dev/actions/melange-build@main
         with:
-          sign-with-temporary-key: true
           multi-config: intel-files/intel-gmmlib.melange.yaml
             intel-files/intel-media-driver.melange.yaml
