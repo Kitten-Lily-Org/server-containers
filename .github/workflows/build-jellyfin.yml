@@ -43,7 +43,7 @@ jobs:
 
       - run: |
           cat jellyfin-files/jellyfin.melange.yaml
-          yq -i e '.environment.contents.repositories += ${{ github.workspace }}/ffmpeg-packages' jellyfin-files/jellyfin.melange.yaml
+          yq -i e '.environment.contents.repositories += ["${{ github.workspace }}/ffmpeg-packages"]' jellyfin-files/jellyfin.melange.yaml
           cat jellyfin-files/jellyfin.melange.yaml
 
       # - uses: chainguard-dev/actions/melange-build@main
