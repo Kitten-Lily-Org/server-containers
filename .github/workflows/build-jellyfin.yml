@@ -45,14 +45,13 @@ jobs:
         run: | 
           wget -q -O GHSA-qrmm-w75w-3wpx.patch https://github.com/wolfi-dev/os/raw/refs/heads/main/jellyfin/GHSA-qrmm-w75w-3wpx.patch
           wget -q -O- https://github.com/wolfi-dev/os/raw/refs/heads/main/jellyfin.yaml | \
-          yq '.environment.contents.repositories = ["https://packages.wolfi.dev/os"]' | \
           yq 'del(.test)' > jellyfin-files/jellyfin.melange.yaml
 
       - uses: chainguard-dev/actions/melange-build@main
         with:
           sign-with-temporary-key: true
           keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
-          repository-append: "${{ github.workspace }}/ffmpeg-packages"
+          repository-append: "${{ github.workspace }}/ffmpeg-packages https://packages.wolfi.dev/os"
           config: jellyfin-files/jellyfin.melange.yaml
       #       jellyfin-files/jellyfin-web.melange.yaml
 
