@@ -52,7 +52,7 @@ jobs:
           sign-with-temporary-key: true
           keyring-append: "https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"
           repository-append: "${{ github.workspace }}/ffmpeg-packages https://packages.wolfi.dev/os"
-          config: jellyfin-files/jellyfin.melange.yaml
+          multi-config: jellyfin-files/jellyfin.melange.yaml
             jellyfin-files/jellyfin-web.melange.yaml
 
       - name: Upload packages
