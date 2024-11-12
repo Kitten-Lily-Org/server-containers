@@ -43,8 +43,7 @@ jobs:
 
       - run: |
           wget -q -O- https://github.com/wolfi-dev/os/raw/refs/heads/main/jellyfin.yaml | \
-          yq '.environment.contents.repositories += ["${{ github.workspace }}/ffmpeg-packages"]' | \
-          yq '.environment.contents.keyring = ["https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"]|.environment.contents.repositories = ["https://packages.wolfi.dev/os"]' | \
+          yq '.environment.contents.keyring = ["https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"]|.environment.contents.repositories = ["https://packages.wolfi.dev/os", "${{ github.workspace }}/ffmpeg-packages"]' | \
           yq 'del(.test)' > jellyfin-files/jellyfin.melange.yaml
           cat jellyfin-files/jellyfin.melange.yaml
 
