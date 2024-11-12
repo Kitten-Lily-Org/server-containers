@@ -9,22 +9,19 @@ package:
     runtime:
       - aspnet-8-runtime
       - dotnet-8
-      - ffmpeg@local
+      - ffmpeg
       - fontconfig
       - mesa
       - sqlite
 
 environment:
   contents:
-    keyring:
-      - https://packages.wolfi.dev/os/wolfi-signing.rsa.pub
-    repositories:
-      - https://packages.wolfi.dev/os
     packages:
       - aspnet-8-runtime
       - busybox
       - dotnet-8-sdk
-      - ffmpeg@local
+      - ffmpeg
+      - openssf-compiler-options
 
 pipeline:
   - uses: git-checkout
@@ -35,7 +32,7 @@ pipeline:
 
   - uses: patch
     with:
-      patches: ./jellyfin-files/GHSA-qrmm-w75w-3wpx.patch
+      patches: GHSA-qrmm-w75w-3wpx.patch
 
   - runs: |
       # Set runtime arch
@@ -64,9 +61,9 @@ pipeline:
 update:
   enabled: true
   ignore-regex-patterns:
-    - ".*alpha.*"
-    - ".*beta.*"
-    - ".*rc.*"
+    - '.*alpha.*'
+    - '.*beta.*'
+    - '.*rc.*'
   github:
     identifier: jellyfin/jellyfin
     use-tag: true
