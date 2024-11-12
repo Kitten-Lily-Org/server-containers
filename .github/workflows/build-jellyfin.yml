@@ -47,11 +47,8 @@ jobs:
           yq 'del(.test)' > jellyfin-files/jellyfin.melange.yaml
           cat jellyfin-files/jellyfin.melange.yaml
 
-      # - uses: chainguard-dev/actions/melange-build@main
-      #   with:
-      #     sign-with-temporary-key: true
-      #     multi-config: intel-files/intel-gmmlib.melange.yaml
-      #       intel-files/intel-media-driver.melange.yaml
-      #       ffmpeg-files/ffmpeg.melange.yaml
-      #       jellyfin-files/jellyfin.melange.yaml
+      - uses: chainguard-dev/actions/melange-build@main
+        with:
+          sign-with-temporary-key: true
+          config: jellyfin-files/jellyfin.melange.yaml
       #       jellyfin-files/jellyfin-web.melange.yaml
