@@ -32,7 +32,8 @@ jobs:
       - uses: actions/checkout@main
       - uses: sigstore/cosign-installer@main
 
-      - run: |
+      - name: Setup build files
+        run: |
           mkdir ffmpeg-files
           wget -q -O- https://github.com/wolfi-dev/os/raw/refs/heads/main/ffmpeg.yaml | \
           yq '.environment.contents.keyring = ["https://packages.wolfi.dev/os/wolfi-signing.rsa.pub"]|.environment.contents.repositories = ["https://packages.wolfi.dev/os"]' | \
